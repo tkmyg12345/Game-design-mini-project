@@ -3,10 +3,11 @@ using UnityEngine;
 public class FinishPoint : MonoBehaviour
 {
 
-   private void OnTriggerEnter2D(Collider2D other)
+   private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.CompareTag("Player"))
         //Win
-        Debug.Log("win");
+            Debug.Log("win");
     }
     
 }
