@@ -3,7 +3,7 @@ using UnityEngine;
 public class FinishPoint : MonoBehaviour
 {
 
-   private void OnCollisionEnter2D(Collision2D collision)
+   private void OnTriggerEnter2D(Collider2D other)
     {
         //Win
         Debug.Log("win");

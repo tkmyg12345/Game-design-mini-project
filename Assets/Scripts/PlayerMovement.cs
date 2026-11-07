@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
         {
             cineCamera.Follow = this.transform;
         }
+        
         playerAnim = gameObject.GetComponent<Animator>();
         rb = gameObject.GetComponent<Rigidbody2D>();
 
