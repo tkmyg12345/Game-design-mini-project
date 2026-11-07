@@ -1538,9 +1538,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 614133f0fffdfd54fabbe0f1dd21d14a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  speed: 5
-  jumpForce: 5
-  horizontalInput: 0
+  groundCheck: {fileID: 232837517}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!50 &2102815969
 Rigidbody2D:
   serializedVersion: 5

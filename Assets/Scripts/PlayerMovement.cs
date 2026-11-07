@@ -1,17 +1,18 @@
 using UnityEngine;
+using Unity.Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
 
-    public float speed;
-    public float jumpForce;
+    private float speed = 5;
+    private float jumpForce = 6;
 
     private float horizontalInput;
     private Animator playerAnim;
     [Header("Grounding")]
-    public Transform GroundCheck;
+    public Transform groundCheck;
     public LayerMask groundLayer;
-    public float groundCheckRadius;
+    private float groundCheckRadius = 0.2f;
     private Rigidbody2D rb; 
     
     private int flippingDirection = 1;
@@ -20,8 +21,17 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        CinemachineCamera cineCamera = FindAnyObjectByType<CinemachineCamera>();
+
+
+        if (cineCamera != null)
+        {
+            cineCamera.Follow = this.transform;
+        }
         playerAnim = gameObject.GetComponent<Animator>();
         rb = gameObject.GetComponent<Rigidbody2D>();
+
+        rb.gravityScale = 2;
     }
 
     // Update is called once per frame
@@ -41,7 +51,12 @@ public class PlayerMovement : MonoBehaviour
 
         //Jumping
         if(Input.GetButtonDown("Jump") && IsGrounded())
-         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            
+        }
+
+        
     }
 
     void FixedUpdate()
@@ -54,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
 
-        return  Physics2D.OverlapCircle(GroundCheck.position, groundCheckRadius, groundLayer );
+        return  Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer );
     }
 
 
